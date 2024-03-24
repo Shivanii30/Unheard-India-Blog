@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If no validation errors, append blog post to JSON file
     if (empty($title_err) && empty($author_err) && empty($content_err) && empty($image_err)) {
-        $blogs_file = 'blogs.json';
+        $blogs_file = 'blogPosts.json';
         $blogs_data = json_decode(file_get_contents($blogs_file), true);
         $new_blog = array(
             "title" => $title,
