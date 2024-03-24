@@ -12,7 +12,7 @@
             padding: 20px;
         }
         h2{
-            margin-left: 260px;
+            margin-left: 480px;
         }
         form {
             background-color: #fff;
