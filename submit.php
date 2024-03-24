@@ -11,13 +11,18 @@
             background-color: #f8f8f8;
             padding: 20px;
         }
+        h2{
+            margin-left: 260px;
+        }
         form {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 500px;
+            height: 500px;
             margin: 0 auto;
+
         }
         label {
             font-weight: bold;
@@ -33,9 +38,26 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            height: 40px;
         }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            height: 200px; /* Adjust height as needed */
+        }
+
         input[type="file"] {
-            width: auto;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            height: 43px;
         }
         span.error {
             color: red;
@@ -56,6 +78,9 @@
             background-color: #45a049;
         }
     </style>
+
+
+
 </head>
 <body>
 
