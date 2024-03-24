@@ -5,6 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Submit Blog Post</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            width: auto;
+        }
+        span.error {
+            color: red;
+        }
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin-left: 10px;
+        }
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 
@@ -68,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If no validation errors, append blog post to JSON file
     if (empty($title_err) && empty($author_err) && empty($content_err) && empty($image_err)) {
-        $blogs_file = 'blogPosts.json';
+        $blogs_file = 'blogP.json';
         $blogs_data = json_decode(file_get_contents($blogs_file), true);
         $new_blog = array(
             "title" => $title,
