@@ -64,10 +64,20 @@ if (!empty($blogs)) {
         echo '<div class="card__image" style="background-image: url(\'images/' . $blog['image'] . '\')"></div>';
         echo '<div class="card__content">';
         echo '<p class="card__title">' . $blog['title'] . '</p>';
-        echo '<p class="card__description">' . $blog['content'] . '</p>';
+
+        // Truncate the content to the first 50 words
+        $truncated_content = implode(' ', array_slice(str_word_count($blog['content'], 2), 0, 50));
+
+        echo '<p class="card__description">' . $truncated_content . '....</p>';
         echo '<p><b>Author:</b> ' . $blog['author'] . '</p>';
-        // You may add more data fields here if needed
-        echo '<a href="full_blog_post.php?id=' . $blog['id'] . '" target="_blank" class="card__button secondary">Read More</a>';
+        
+
+        //Redirect to separate blog page
+        if(isset($blog['id'])){
+            $url = 'full_blog_post.php?id=' . $blog['id'];
+            echo '<a href ="' . $url . '" class="card__button secondary">Read More</a>';
+        }
+        
         echo '</div>';
         echo '</div>';
     }
@@ -131,6 +141,7 @@ background-size: cover;
 }
 
 .card:hover .card__content {
+  background-color: white;
   transform: rotateX(0deg);
 }
 
@@ -152,19 +163,46 @@ background-size: cover;
   line-height: 1.4;
 }
 
+
+
 .card__button {
-  padding: 15px;
-  border-radius: 8px;
-  background: #777;
-  border: none;
-  color: white;
+ width: 100px;
+ height: 20px;
+ color: #fff;
+ border-radius: 5px;
+ padding: 10px 25px;
+ font-family: 'Lato', sans-serif;
+ font-weight: 500;
+ background: transparent;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ position: absolute;
+ display: inline-block;
+ box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+ outline: none;
+ bottom:30px;
 }
 
 .secondary {
-  background: transparent;
-  color: #777;
-  border: 1px solid #777;
+ background: rgb(96,9,240);
+ background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
+ border: none;
 }
+
+.btn-1:before {
+ height: 0%;
+ width: 2px;
+}
+
+.card__button:hover {
+ box-shadow: 4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
 </style>
 
 <div class="card">
