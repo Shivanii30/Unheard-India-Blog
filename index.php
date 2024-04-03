@@ -48,59 +48,31 @@
 <!-- blog -->
 <div class="blog-content" id="blog-content">
     <?php
-    $file = 'blogPosts.json';
+    $file = 'new-blogs.json';
     // Read the content of the JSON file
     $json_data = file_get_contents($file);
 
     // Parse the JSON data into an array
     $blogs = json_decode($json_data, true);
 
-    // Check if $blogs is not null
-    if ($blogs !== null) {
-        // Dynamically display each blog post using HTML and Bootstrap components
-        foreach ($blogs as $blog) {
-            echo '<div class="blog-item">';
-            echo '<div class="blog-img">';
-
-            // Check if 'image' key exists
-            if (isset($blog['image'])) {
-                echo '<img src="images/' . $blog['image'] . '" alt="' . $blog['title'] . '">';
-            } else {
-                echo '<img src="images/krishna-girl.jpg" alt="Image not found">';
-            }
-
-            echo '<span><i class="far fa-heart"></i></span>';
-            echo '</div>';
-            echo '<div class="blog-text">';
-            // Check if 'title' key exists
-            if (isset($blog['title'])) {
-                echo '<h2>' . $blog['title'] . '</h2>';
-            } else {
-                echo '<h2>No Title</h2>';
-            }
-
-            // Check if 'content' key exists
-            if (isset($blog['content'])) {
-                echo '<p>' . $blog['content'] . '</p>';
-            } else {
-                echo '<p>No Content</p>';
-            }
-
-            // Check if 'author' key exists
-            if (isset($blog['author'])) {
-                echo '<p><strong>Author:</strong> ' . $blog['author'] . '</p>';
-            } else {
-                echo '<p><strong>Author:</strong> Unknown</p>';
-            }
-            echo '</div>';
-            echo '</div>';
-
-
-        }
-    } else {
-        echo '<p>No blog posts found.</p>';
+// Check if there are any blog posts
+if (!empty($blogs)) {
+    // Iterate through each blog post
+    foreach ($blogs as $blog) {
+        echo '<div class="card">';
+        echo '<div class="card__image" style="background-image: url(\'images/' . $blog['image'] . '\')"></div>';
+        echo '<div class="card__content">';
+        echo '<p class="card__title">' . $blog['title'] . '</p>';
+        echo '<p class="card__description">' . $blog['content'] . '</p>';
+        echo '<p><b>Author:</b> ' . $blog['author'] . '</p>';
+        // You may add more data fields here if needed
+        echo '<a href="full_blog_post.php?id=' . $blog['id'] . '" target="_blank" class="card__button secondary">Read More</a>';
+        echo '</div>';
+        echo '</div>';
     }
-    ?>
+} else {
+    echo '<p>No blog posts found.</p>';
+}?>
 
 <!--New Card-->
 
@@ -132,9 +104,8 @@
 width: 100%;
 height: 100%;
 background-image: url('images/datta.jpg');
-
 background-size: cover;
-background-position: center;
+/*background-position: center;*/
 
 }
 
@@ -151,14 +122,13 @@ background-position: center;
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #f2f2f2;
+  /*background-color: #f2f2f2;*/
   transform: rotateX(-90deg);
   transform-origin: bottom;
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card:hover .card__content {
-    background-color: #ffff;
   transform: rotateX(0deg);
 }
 
