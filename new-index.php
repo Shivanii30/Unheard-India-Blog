@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+    <!--<script type="text/javascript" src="index.js"></script>-->
 </head>
 
 <body>
@@ -43,7 +43,7 @@
     <div class = "blog-content" id = "blog-content">
         <?php 
 
-        $file = "blogPosts.json";
+        $file = "new-blogs.json";
 
         $json_data = file_get_contents($file); //read file
 
@@ -191,5 +191,4 @@
         <button class="card__button secondary">Read More</button>
     </div>
 </div>
-
-    </div>
+</div> 
