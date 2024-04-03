@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Unheard India</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Unheard India</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Font awesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="styles.css"/>
+    <script src = "container.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+    </head>
 
 <body>
 
@@ -44,7 +45,7 @@
     </div>
 </header>
 <!-- end of header -->
-
+<div class = "container">
 <!-- blog -->
 <div class="blog-content" id="blog-content">
     <?php
@@ -71,7 +72,10 @@ if (!empty($blogs)) {
         echo '</div>';
     }
 } else {
-    echo '<p>No blog posts found.</p>';
+    echo '<div class="alert">
+    <h3>No blog posts found</h3>
+    <p>Sorry, there are currently no blog posts available.</p>
+</div>';
 }?>
 
 <!--New Card-->
@@ -103,9 +107,8 @@ if (!empty($blogs)) {
 .card__image {
 width: 100%;
 height: 100%;
-background-image: url('images/datta.jpg');
+background-image: url('');
 background-size: cover;
-/*background-position: center;*/
 
 }
 
@@ -122,7 +125,6 @@ background-size: cover;
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  /*background-color: #f2f2f2;*/
   transform: rotateX(-90deg);
   transform-origin: bottom;
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -164,12 +166,12 @@ background-size: cover;
   border: 1px solid #777;
 }
 </style>
+
 <div class="card">
     <div class = "card__image"></div>
     <div class="card__content">
-        <p class="card__title">Project Name</p>
-        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. <br></br>
-        <b>Author <b> : Shivani <br></br> <b>Date</b> : 16/04/24</p>
+        <p class="card__title"></p>
+        <p class="card__description"></p>
         <button class="card__button secondary">Read More</button>
     </div>
 </div>
@@ -181,6 +183,7 @@ background-size: cover;
 </div>
 
 
+</div>
 </div>
 <!-- end of blog -->
 
