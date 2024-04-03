@@ -39,3 +39,60 @@
             </div>
         </div>
     </header>
+
+    <div class = "blog-content" id = "blog-content">
+        <?php 
+
+        $file = "blogPosts.json";
+
+        $json_data = file_get_contents($file); //read file
+
+        $blogs = json_decode( $json_data, true ); //parse JSON
+
+        if($blogs!=NULL){
+            foreach($blogs as $blog){
+                echo '<div class = "blog-item">';
+                echo '<div class = "blog-img">';
+
+                // Check if 'image' key exists
+                if (isset($blog['image'])) {
+                    echo '<img src="images/' . $blog['image'] . '" alt="' . $blog['title'] . '">';
+                } else {
+                    echo '<img src="images/krishna-girl.jpg" alt="Image not found">';
+                }
+
+            echo '<span><i class="far fa-heart"></i></span>';
+            echo '</div>';
+            echo '<div class="blog-text">';
+
+             // Check if 'title' key exists
+             if (isset($blog['title'])) {
+                echo '<h2>' . $blog['title'] . '</h2>';
+            } else {
+                echo '<h2>No Title</h2>';
+            }
+
+            // Check if 'content' key exists
+            if (isset($blog['content'])) {
+                echo '<p>' . $blog['content'] . '</p>';
+            } else {
+                echo '<p>No Content</p>';
+            }
+
+              // Check if 'author' key exists
+            if (isset($blog['author'])) {
+                echo '<p><strong>Author:</strong> ' . $blog['author'] . '</p>';
+            } else {
+                echo '<p><strong>Author:</strong> Unknown</p>';
+            }
+            echo '</div>';
+            echo '</div>';
+
+
+        }
+    } else {
+        echo '<p>No blog posts found.</p>';
+    }
+    ?>
+
+    </div>
