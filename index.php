@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
 </head>
 
 <body>
@@ -102,9 +101,6 @@
         echo '<p>No blog posts found.</p>';
     }
     ?>
-   
-</div>
-
 
 <!--New Card-->
 
@@ -133,12 +129,12 @@
 }
 
 .card__image {
-  width: 100%;
-  height: 100%;
-  background-image: url('images/datta.jpg');
-  
-    background-size: cover;
-    background-position: center;
+width: 100%;
+height: 100%;
+background-image: url('images/datta.jpg');
+
+background-size: cover;
+background-position: center;
 
 }
 
@@ -199,15 +195,16 @@
 }
 </style>
 <div class="card">
-<div class = "card__image"></div>
-  <div class="card__content">
-    <p class="card__title">Project Name</p>
-    <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. <br></br>
-    <b>Author <b> : Shivani <br></br> <b>Date</b> : 16/04/24</p>
-    <button class="card__button secondary">Read More</button>
-  </div>
+    <div class = "card__image"></div>
+    <div class="card__content">
+        <p class="card__title">Project Name</p>
+        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. <br></br>
+        <b>Author <b> : Shivani <br></br> <b>Date</b> : 16/04/24</p>
+        <button class="card__button secondary">Read More</button>
+    </div>
 </div>
 
+</div>
 </div>
 
     <!-- End of provided card snippet -->
