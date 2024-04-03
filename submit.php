@@ -86,8 +86,8 @@
 
 <?php
 // Define variables and initialize with empty values
-$title = $author = $content = $image = "";
-$title_err = $author_err = $content_err = $image_err = "";
+$title = $author = $content = $cover = $image = "";
+$title_err = $author_err = $content_err = $image_err  = $cover_photo_err ="";
 
 // Process form submission when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -104,6 +104,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $author = trim($_POST["author"]);
     }
+
+    //Validate cover photo
+if (!empty($_FILES["cover_photo"]["name"])) {
+    $target_dir = "images/";
+    $target_file = $target_dir . basename($_FILES["cover_photo"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["cover_photo"]["tmp_name"]);
+    if ($check !== false) {
+        // Check file size
+        if ($_FILES["cover_photo"]["size"] > 5000000) {
+            $cover_photo_err = "Sorry, your cover photo file is too large.";
+        } else {
+            // Allow certain file formats
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                $cover_photo_err = "Sorry, only JPG, JPEG, and PNG files are allowed for cover photos.";
+            } else {
+                // Move uploaded file to designated folder
+                if (move_uploaded_file($_FILES["cover_photo"]["tmp_name"], $target_file)) {
+                    $cover_photo = basename($_FILES["cover_photo"]["name"]);
+                } else {
+                    $cover_photo_err = "Sorry, there was an error uploading your cover photo.";
+                }
+            }
+        }
+    } else {
+        $cover_photo_err = "File is not a valid image for cover photo.";
+    }
+}
+
 
     // Validate content
     if (empty(trim($_POST["content"]))) {
@@ -143,15 +174,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // If no validation errors, append blog post to JSON file
-    if (empty($title_err) && empty($author_err) && empty($content_err) && empty($image_err)) {
-        $blogs_file = 'blogP.json';
+    if (empty($title_err) && empty($author_err) && empty($cover_photo_err) && empty($content_err) && empty($image_err)) {
+        $blogs_file = 'new-blogs.json';
         $blogs_data = json_decode(file_get_contents($blogs_file), true);
+        
+        $id = uniqid();
+        
         $new_blog = array(
             "title" => $title,
             "content" => $content,
             "author" => $author,
+            "cover"=>$cover,
             "image" => $image
         );
+        
         $blogs_data[] = $new_blog;
         file_put_contents($blogs_file, json_encode($blogs_data));
         echo "Blog post submitted successfully.";
@@ -170,6 +206,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Author:</label>
         <input type="text" name="author" value="<?php echo $author; ?>">
         <span><?php echo $author_err; ?></span>
+    </div>
+    <div>
+        <label>Cover Photo:</label>
+        <input type="file" name="cover_photo">
+        <span><?php echo $cover_photo_err; ?></span>
     </div>
     <div>
         <label>Content:</label>
