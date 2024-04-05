@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST["signup"])) {
             // Password is correct, set session variables and redirect to dashboard
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
-            header("Location: dashboard.php");
+            header("Location: index.php");
             exit();
         } else {
             // Password is incorrect, display error message
@@ -67,11 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST["signup"])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body>
-    <h2>Login</h2>
+<body style="background-color: #000;">
+
+<div class = "container">
+<h2>Login</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div>
             <label for="email">Email:</label>
@@ -86,24 +89,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST["signup"])) {
         </div>
     </form>
 
-    <h2>Sign Up</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <input type="hidden" name="signup" value="true">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div>
-            <label for="email_signup">Email:</label>
-            <input type="email" id="email_signup" name="email" required>
-        </div>
-        <div>
-            <label for="password_signup">Password:</label>
-            <input type="password" id="password_signup" name="password" required>
-        </div>
-        <div>
-            <button type="submit">Sign Up</button>
-        </div>
-    </form>
+    <p id="signup-link">Don't have an account? <a href="#" onclick="toggleSignUpForm()">Signup</a></p>
+
+    <!-- Sign-up form -->
+    <div id="signup-form" style="display: none;">
+        <h2>Sign Up</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <input type="hidden" name="signup" value="true">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="email_signup">Email:</label>
+                <input type="email" id="email_signup" name="email" required>
+            </div>
+            <div>
+                <label for="password_signup">Password:</label>
+                <input type="password" id="password_signup" name="password" required>
+            </div>
+            <div>
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleSignUpForm() {
+        var signupForm = document.getElementById("signup-form");
+        if (signupForm.style.display === "none") {
+            signupForm.style.display = "block";
+        } else {
+            signupForm.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
