@@ -1,3 +1,78 @@
+<?php
+// Include the database connection file
+include_once 'db_connection.php';
+
+// Initialize variables for alert message
+$alert_message = "";
+$alert_type = "";
+$login_username = "";
+$login_password = "";
+$signup_firstname = "";
+$signup_username = "";
+$signup_password = "";
+$signup_confirm_password = "";
+
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['login_submit'])) {
+        // Handle login form submission
+        $login_username = $_POST['login_username'];
+        $login_password = $_POST['login_password'];
+
+        // Query the database to check if the username exists
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->bindParam(':username', $login_username);
+        $stmt->execute();
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($login_password, $user['password'])) {
+            // User authenticated successfully
+            $alert_message = "Login successful!";
+            $alert_type = "success";
+            // Redirect to the dashboard or another page
+            header("Location: index.php");
+            exit(); // Stop further execution
+        } else {
+            // Invalid credentials
+            $alert_message = "Error: Invalid username or password.";
+            $alert_type = "error";
+        }
+    } elseif (isset($_POST['signup_submit'])) {
+        // Handle sign-up form submission
+        $signup_email = $_POST['email'];
+        $signup_username = $_POST['username'];
+        $signup_password = $_POST['password'];
+        $signup_confirm_password = $_POST['confirm_password'];
+
+        // Validate form data (e.g., check if passwords match)
+        if ($signup_password != $signup_confirm_password) {
+            $alert_message = "Error: Passwords do not match.";
+            $alert_type = "error";
+        } else {
+            // Hash the password before storing it in the database (for security)
+            $hashed_password = password_hash($signup_password, PASSWORD_DEFAULT);
+
+            // Insert the user data into the database
+            $stmt = $pdo->prepare("INSERT INTO users (username,email, password) VALUES (:username, :email, :password)");
+            $stmt->bindParam(':username', $signup_username);
+            $stmt->bindParam(':email', $signup_email);
+            $stmt->bindParam(':password', $hashed_password);
+            
+
+            // Execute the query
+            if ($stmt->execute()) {
+                $alert_message = "User registered successfully!";
+                $alert_type = "success";
+            } else {
+                $alert_message = "Error: User registration failed.";
+                $alert_type = "error";
+            }
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +87,21 @@
     <script src = "container.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/boxicons/2.0.7/css/boxicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        // Display alert message
+        function showAlert(message, type) {
+            alert(message);
+            // You can also customize the alert style based on the type (success, error, etc.)
+        }
+
+        // Check if there's an alert message from PHP and display it using JavaScript
+        <?php if ($alert_message): ?>
+            showAlert("<?php echo $alert_message; ?>", "<?php echo $alert_type; ?>");
+        <?php endif; ?>
+    </script>
+
+
     </head>
 
 <body>
@@ -22,7 +112,7 @@
         <div class="container">
             <a href="index.php" class="navbar-brand">Unheard.India</a>
             <div class="navbar-nav">
-                <a href="#">home</a>
+                <a href="index.php">home</a>
                 <a href="submit.php">submit</a>
                 <a href="about.php">about</a>
                 <a href="email.php">connect</a>
@@ -34,12 +124,12 @@
 <!-- end of header --> 
 <div class="container">
     <input id="signup_toggle" type="checkbox">
-    <form class="form">
+    <form class="form" method="POST" action="signup.php">
         <div class="form_front">
             <div class="form_details">Login</div>
-            <input type="text" class="input" placeholder="Username">
-            <input type="text" class="input" placeholder="Password">
-            <button class="btn">Login</button>
+            <input type="text" class="input"name="login_username" placeholder="Username">
+            <input type="text" class="input" name="login_password" placeholder="Password">
+            <button class="btn" name="login_submit" type = "submit">Login</button>
             <span class="switch">Don't have an account? 
                 <label for="signup_toggle" class="signup_tog">
                     Sign Up
@@ -48,11 +138,11 @@
         </div>
         <div class="form_back">
             <div class="form_details">SignUp</div>
-            <input type="text" class="input" placeholder="Firstname">
-            <input type="text" class="input" placeholder="Username">
-            <input type="text" class="input" placeholder="Password">
-            <input type="text" class="input" placeholder="Confirm Password">
-            <button class="btn">Signup</button>
+            <input type="email" class="input" placeholder="Email"  name="email">
+            <input type="text" class="input" placeholder="Username" name="username">
+            <input type="password" class="input" placeholder="Password"name="password">
+            <input type="password" class="input" placeholder="Confirm Password" name="confirm_password">
+            <button class="btn" name="signup_submit" type = "submit">Signup</button>
             <span class="switch">Already have an account? 
                 <label for="signup_toggle" class="signup_tog">
                     Sign In
@@ -195,5 +285,18 @@
   transform: rotateY(-180deg);
 }
 </style>
+
+<script>
+     // Display alert message
+     function showAlert(message, type) {
+            alert(message);
+            // You can also customize the alert style based on the type (success, error, etc.)
+        }
+
+        // Check if there's an alert message from PHP and display it using JavaScript
+        <?php if ($alert_message): ?>
+            showAlert("<?php echo $alert_message; ?>", "<?php echo $alert_type; ?>");
+        <?php endif; ?>
+</script>
 </body>
 </html>
