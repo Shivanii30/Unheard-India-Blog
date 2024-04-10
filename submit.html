@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include your CSS file here -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form">
+            <form method="post" action="submit.php" enctype="multipart/form-data">
+                <label for="title" class="heading orange">Title:</label><br>
+                <input type="text" id="title" name="title" class="input"><br>
+                
+                <label for="content" class="heading orange">Content:</label><br>
+                <textarea id="content" name="content" class="textarea"></textarea><br>
+                
+                <label for="author" class="heading orange">Author:</label><br>
+                <input type="text" id="author" name="author" class="input"><br>
+                
+                <label for="cover" class="heading orange">Cover Photo:</label><br>
+                <input type="file" id="cover" name="cover" class="input"><br>
+                
+                <label for="image" class="heading orange">Image:</label><br>
+                <input type="file" id="image" name="image" class="input"><br>
+                
+                <div class="button-container">
+                    <input type="submit" value="Submit" class="send-button">
+                    <!-- Optionally, add a reset button -->
+                    <!-- <div class="reset-button-container">
+                        <input type="reset" value="Reset" class="reset-button">
+                    </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<style>
+    .orange {
+  color: #ff7a01;
+}
+
+.form-container {
+    left:50px;
+  max-width: 700px;
+  margin: 30px;
+  background-color: #001925;
+  padding: 30px;
+  border-left: 5px solid #ff7a01;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+.heading {
+  display: block;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.form-container .form .input {
+  color: #87a4b6;
+  width: 100%;
+  background-color: #002733;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  border-left: 1px solid transparent;
+}
+
+.form-container .form .input:focus {
+  border-left: 5px solid #ff7a01;
+}
+
+.form-container .form .textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: #013747;
+  color: #ff7a01;
+  font-weight: bold;
+  resize: none;
+  max-height: 150px;
+  margin-bottom: 20px;
+  border-left: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-container .form .textarea:focus {
+  border-left: 5px solid #ff7a01;
+}
+
+.form-container .form .button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.form-container .form .button-container .send-button {
+  flex-basis: 70%;
+  background: #ff7a01;
+  padding: 10px;
+  color: #001925;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-container .form .button-container .send-button:hover {
+  background: transparent;
+  border: 1px solid #ff7a01;
+  color: #ff7a01;
+}
+
+.form-container .form .button-container .reset-button-container {
+  filter: drop-shadow(1px 1px 0px #ff7a01);
+  flex-basis: 30%;
+}
+
+.form-container .form .button-container .reset-button-container .reset-button {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  color: #ff7a01;
+  font-weight: bold;
+  background: #001925;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  transition: all 0.2s ease-in-out;
+}
+
+.form-container .form .button-container .reset-button-container .reset-button:hover {
+  background: #ff7a01;
+  color: #001925;
+}
+</style>
+</html>
