@@ -62,7 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <DOCTYPE html>
-<form method="post" action="submit.php" enctype="multipart/form-data">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+<div class = "form-container">
+    <div class = "form">
+    <form method="post" action="submit.php" enctype="multipart/form-data">
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title"><br>
     
@@ -80,4 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <input type="submit" value="Submit">
 </form>
+</div>
+</div>
 </html>
