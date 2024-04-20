@@ -17,10 +17,10 @@
         <div class="container">
             <a href="index.php" class="navbar-brand">Unheard.India</a>
             <div class="navbar-nav">
-                <a href="#">home</a>
+                <a href="index.php">home</a>
                 <a href="submit.php">submit</a>
-                <a href="about.php">about</a>
-                <a href="email.php">connect</a>
+                <a href="about.html">about</a>
+                <a href="contact.html">connect</a>
                 <a href = "signup.php">login</a>
             </div>
         </div>
@@ -45,13 +45,25 @@ if ($blog_post) {
     ?>
 
 <div class="blog-post">
+<h1><?php echo $blog_post['title']; ?></h1>
         <div class="blog-image">
-            <img src="path_to_image" alt="Blog Image">
+        <?php
+            // Fetch image path from the database
+            $image_path = $blog_post['image']; // Assuming 'image_path' is the column name in your database
+            
+            // Check if image_path is not empty
+            if (!empty($image_path)) {
+                // Output the image tag with the dynamically fetched image path
+                echo '<img src="' . $image_path . '" alt="Blog Image">';
+            } else {
+                // If image path is empty or not found, you can provide a default image or a placeholder
+                echo '<img src="images/404 error with portals-rafiki.png" alt="Default Image">';
+            }
+            ?>
         </div>
-        <div class="blog-content">
-            <h1><?php echo $blog_post['title']; ?></h1>
+        <div class="post-content">
+           <br> <p><?php echo $blog_post['content']; ?></p><br>
             <p><strong>Author:</strong> <?php echo $blog_post['author']; ?></p>
-            <p><?php echo $blog_post['content']; ?></p>
         </div>
     </div>
 <?php
