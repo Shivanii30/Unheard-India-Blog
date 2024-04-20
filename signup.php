@@ -114,9 +114,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="navbar-nav">
                 <a href="index.php">home</a>
                 <a href="submit.php">submit</a>
-                <a href="about.php">about</a>
-                <a href="email.php">connect</a>
-                <a href = "login.php">login</a>
+                <a href="about.html">about</a>
+                <a href="contact.html">connect</a>
+                <a href = "signup.php">login</a>
             </div>
         </div>
     </nav>
