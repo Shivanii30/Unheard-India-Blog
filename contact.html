@@ -1,47 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Unheard India</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Font awesome icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-
-    <!-- header -->
-    <header>
-      <nav class = "navbar">
-        <div class = "container">
-          <a href = "index.html" class = "navbar-brand">Unheard.India</a>
-          <div class = "navbar-nav">
-            <a href = "index.html">home</a>
-            <a href = "">explore</a>
-            <a href = "about.html">about</a>
-            <a href = "contact.html">connect</a>
-          </div>
-        </div>
-      </nav>
-      
-    </header>
-    <!-- end of header -->
-<div class="login-box">
- 
-    <form>
-      <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Enter your email</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="" required="">
-        <label>Enter your message</label>
-      </div><center>
-      <a href="#">
-             SEND
-         <span></span>
-      </a></center>
-    </form>
-  </div>
+<form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xvoedrry" method="post">
+    <fieldset id="fs-frm-inputs">
+      <label for="full-name">Full Name</label>
+      <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
+      <label for="email-address">Email Address</label>
+      <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required="">
+      <label for="message">Message</label>
+      <textarea rows="5" name="message" id="message" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required=""></textarea>
+      <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+    </fieldset>
+    <input type="submit" value="Submit">
+  </form>
+  
